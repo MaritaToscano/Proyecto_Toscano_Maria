@@ -1,8 +1,15 @@
 import streamlit as st
 import pandas as pd
+import gdown
+import os
 import numpy as np
 st.title("Análisis de Transacciones de Tarjetas de Crédito")
 st.write("Este es un análisis de las transacciones de tarjetas de crédito utilizando Streamlit.")
+CSV_PATH = "credit_card_transactions.csv"
+FILE_ID = "1TfgsRgXStBjNbWer0ZQ9Zki0vycBVIVp"  
+if not os.path.exists(CSV_PATH):
+    url = f"https://drive.google.com/uc?id={FILE_ID}"
+    gdown.download(url, CSV_PATH, quiet=False)
 df = pd.read_csv("credit_card_transactions.csv")
 st.dataframe(df.head())
 st.write(df.shape)
